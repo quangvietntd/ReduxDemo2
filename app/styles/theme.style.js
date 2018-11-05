@@ -12,8 +12,6 @@ export default {
     BORDER_COLOR_LIGHT: '#ABACAB',
     CONTAINER_PADDING: 20,
     TEXT_INPUT_PADDING: 10,
-    ACTIVE_TAB_COLOR: '#0071FF',
-    INACTIVE_TAB_COLOR: 'grey',
     BORDER_WIDTH: 1,
   };
   
