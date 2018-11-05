@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Alert, TextInput } from 'react-native';
 import Swipeout from 'react-native-swipeout';
+import theme from '../../styles/theme.style';
 
 export default class FlatListItem extends Component {
     render() {
@@ -44,12 +45,11 @@ export default class FlatListItem extends Component {
                 <View style={{ flex: 1 }}>
                     <Text style={{
                         padding: 10,
-                        fontWeight: 'bold',
-                        fontSize: 17,
+                        fontSize: theme.FONT_SIZE_MEDIUM,
                         color: 'white',
-                        backgroundColor: (this.props.itemIndex % 2 === 0) ? 'dodgerblue' : 'mediumseagreen'
+                        backgroundColor: (this.props.itemIndex % 2 === 0) ? 'darkgreen' : 'darkblue'
                     }}>
-                        {this.props.name}, Release Year: {this.props.releaseYear}
+                        Name: {this.props.name}{'\n'}Release Year: {this.props.releaseYear}
                     </Text>
                 </View>
             </Swipeout>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Text, TextInput, Button, } from 'react-native';
+import { Text } from 'react-native';
 import Modal from 'react-native-modalbox';
 import styles from './EditModal.style';
+import FloatingLabel from 'react-native-floating-labels';
+import MyButton from '../MyButton/MyButton.component';
 
 export default class EditModal extends Component {
     constructor(props) {
@@ -23,7 +25,7 @@ export default class EditModal extends Component {
     }
 
     render() {
-        const { wrapper, title, inputMovieName, inputMovieReleaseYear } = styles;
+        const { wrapper, title, labelInput, input, formInput } = styles;
         return (
             <Modal
                 ref={'myModal'}
@@ -35,31 +37,34 @@ export default class EditModal extends Component {
                 }}
             >
                 <Text style={title}>
-                    informations of the movie
+                    Update movie
                 </Text>
-                <TextInput
-                    style={inputMovieName}
+                <FloatingLabel
+                    labelStyle={labelInput}
+                    inputStyle={input}
+                    style={formInput}
                     onChangeText={(text) => this.setState({ name: text })}
-                    placeholder="Movie's name"
                     value={this.state.name}
-                />
-                <TextInput
-                    style={inputMovieReleaseYear}
+                >Movie's name</FloatingLabel>
+                <FloatingLabel
+                    labelStyle={labelInput}
+                    inputStyle={input}
+                    style={formInput}
                     onChangeText={(text) => this.setState({ releaseYear: text })}
-                    placeholder="Release Year"
                     value={this.state.releaseYear}
-                />
-                <Button
-                    title='Save'
-                    color='mediumseagreen'
+                    keyboardType='numeric'
+                >Release Year</FloatingLabel>
+                <MyButton
+                    label='Save'
                     onPress={() => {
-                        if (this.state.name.length === 0 || this.state.releaseYear === 0) {
+                        if (this.state.name.length === 0 || this.state.releaseYear.length === 0) {
                             alert('You must enter movie name and release year!');
                             return;
                         }
                         this.props.movieComponent.props.onUpdateMovie(this.state);
                         this.refs.myModal.close();
-                    }} />
+                    }}
+                />
             </Modal>
         );
     }

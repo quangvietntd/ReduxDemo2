@@ -16,7 +16,7 @@ function* insertNewMovieFromApi(newMovie) {
         name: newMovie.name,
         releaseYear: newMovie.releaseYear
     });
-    return yield (response.ok);
+    return response.ok;
 }
 
 //Send PUT request to update existing Movie
@@ -25,13 +25,13 @@ function* updateMovieFromApi(updatedMovie) {
         name: updatedMovie.name,
         releaseYear: updatedMovie.releaseYear
     });
-    return yield response.ok;
+    return response.ok;
 }
 
 //Send DELETE request to update existing Movie
 function* deleteMovieFromApi(deletedMovieId) {
     const response = yield api.delete(`/movies/${deletedMovieId}`);
-    return yield response.ok;
+    return response.ok;
 }
 
 export const Api = {

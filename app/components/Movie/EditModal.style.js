@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import common from '../../styles/common.style';
+import theme from '../../styles/theme.style';
 
 var screen = Dimensions.get('window');
 
@@ -11,26 +13,22 @@ const styles = StyleSheet.create({
         height: 280
     },
     title: {
-        fontSize: 20,
+        fontSize: theme.FONT_SIZE_LARGE,
         fontWeight: 'bold',
         textAlign: 'center',
         marginTop: 10
     },
-    inputMovieName: {
-        margin: 5,
-        padding: 2,
-        borderColor: 'gray',
-        borderBottomWidth: 1,
-        width: screen.width - 120
-
+    labelInput: {
+        ...common.labelInput,
     },
-    inputMovieReleaseYear: {
-        margin: 5,
-        padding: 2,
-        borderColor: 'gray',
-        borderBottomWidth: 1,
+    formInput: {
+        ...common.formInput,
         width: screen.width - 120
-    }
+    },
+    input: {
+        ...common.input,
+    },
+
 });
 
 export default styles;
