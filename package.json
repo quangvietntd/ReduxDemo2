@@ -12,6 +12,8 @@
     "apisauce": "^1.0.0",
     "react": "16.5.0",
     "react-native": "0.57.1",
+    "react-native-floating-label-text-input": "^0.1.5",
+    "react-native-floating-labels": "^1.1.9",
     "react-native-modalbox": "^1.6.0",
     "react-native-swipeout": "^2.3.6",
     "react-navigation": "^2.17.0",

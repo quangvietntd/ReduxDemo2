@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, FlatList, Alert } from 'react-native';
-import FlatListItem from './FlatListItem.js';
-import EditModal from './EditModal.js';
+import { View, Text, FlatList, Alert } from 'react-native';
+import FlatListItem from './FlatListItem';
+import EditModal from './EditModal';
+import styles from './Movie.component.style';
+import FloatingLabel from 'react-native-floating-labels';
+import MyButton from '../MyButton/MyButton.component';
 
-export default class MovieComponent extends Component {
+export default class Movie extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,43 +14,44 @@ export default class MovieComponent extends Component {
             releaseYear: '',
         };
     }
-
-
     render() {
+        const { wrapper, header, title,
+            buttonContainer,
+            listContainer,
+            labelInput, input, formInput
+        } = styles;
         return (
-
-            <View style={{ flex: 1 }}>
-                <Text style={{ margin: 10, color: 'forestgreen', fontSize: 20, fontWeight: 'bold' }}>
+            <View style={wrapper}>
+                <Text style={header}>
                     Redux Saga tutorials - Movies list
-        </Text>
-                <Text style={{ margin: 10, fontSize: 20, color: 'black' }}>
+                </Text>
+                <Text style={title}>
                     New movie information
-        </Text>
-                <View style={{ height: 100, margin: 10 }}>
-                    <TextInput style={{ flex: 1, margin: 5, padding: 10, borderColor: 'gray', borderWidth: 1 }}
+                </Text>
+                <View>
+                    <FloatingLabel
+                        labelStyle={labelInput}
+                        inputStyle={input}
+                        style={formInput}
                         onChangeText={(text) => this.setState({ movieName: text })}
                         value={this.state.movieName}
-                        placeholder='Enter new movie name'
-                    />
-                    <TextInput style={{ flex: 1, margin: 5, padding: 10, borderColor: 'gray', borderWidth: 1, width: 120 }}
+                    >Enter new movie name</FloatingLabel>
+                    <FloatingLabel
+                        labelStyle={labelInput}
+                        inputStyle={input}
+                        style={formInput}
                         onChangeText={(text) => this.setState({ releaseYear: text })}
                         value={this.state.releaseYear}
-                        placeholder='Release Year'
                         keyboardType='numeric'
-                    />
+                    >Release Year</FloatingLabel>
                 </View>
-                <View style={{ flexDirection: 'row', height: 40, marginLeft: 20 }}>
-                    <Button
-                        title='Fetch movies'
-                        color='darkviolet'
-                        onPress={() => {
-                            this.props.onFetchMovies(this.state.page);
-                        }}
+                <View style={buttonContainer}>
+                    <MyButton 
+                        label='Fetch movies'
+                        onPress={() => { this.props.onFetchMovies()}}
                     />
-                    <View style={{ margin: 30 }}></View>
-                    <Button
-                        title='Add movie'
-                        color='darkviolet'
+                    <MyButton 
+                        label='Add movie'
                         onPress={() => {
                             const { movieName, releaseYear } = this.state;
                             if (movieName.length === 0 || releaseYear.length === 0) {
@@ -58,7 +62,7 @@ export default class MovieComponent extends Component {
                         }}
                     />
                 </View>
-                <View style={{ flex: 1, paddingTop: 20 }}>
+                <View style={listContainer}>
                     <FlatList
                         data={this.props.movies}
                         keyExtractor={(item) => item.id.toString()}
@@ -69,10 +73,7 @@ export default class MovieComponent extends Component {
                     />
                 </View>
                 <EditModal ref={'editModal'} movieComponent={this} />
-
             </View>
-
-
         );
     }
 }

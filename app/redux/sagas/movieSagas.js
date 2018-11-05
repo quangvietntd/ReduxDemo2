@@ -65,10 +65,3 @@ function* deleteMovie(action) {
 export function* watchDeleteMovie() {
     yield takeLatest(DELETE_MOVIE, deleteMovie);
 }
-
-export const allSagas = [
-    watchFetchMovies,
-    watchAddNewMovie,
-    watchUpdateMovie,
-    watchDeleteMovie
-];

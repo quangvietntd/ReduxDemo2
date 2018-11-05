@@ -6,7 +6,7 @@ const api = create({ baseURL: 'http://10.0.3.2:3000' });
 
 function* getMoviesFromApi() {
     const response = yield api.get('/movies');
-    const movies =  response.ok ? response.data : [];
+    const movies = response.ok ? response.data : [];
     return movies;
 }
 
@@ -33,7 +33,6 @@ function* deleteMovieFromApi(deletedMovieId) {
     const response = yield api.delete(`/movies/${deletedMovieId}`);
     return yield response.ok;
 }
-
 
 export const Api = {
     getMoviesFromApi,
